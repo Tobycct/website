@@ -6,6 +6,8 @@
 		<link rel="stylesheet" href="css/base.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/rocket.css"/>
+		<link rel="stylesheet" type="text/css" href="swiper/css/swiper.min.css"/>
+		<link rel="stylesheet" href="css/swiper.css">
 	</head>
 	<body>	
 		<header>
@@ -254,6 +256,37 @@
 				<p class="about_me_h">我的生活</p>
 				<div class="about_me_title">· MY LIFE ·</div>
 			</div>
+			
+			 <!-- Swiper -->
+		    <div class="life_box">
+		    	<div class="swiper-container gallery-top">
+			        <div class="swiper-wrapper">
+			            <div class="swiper-slide" style="background-image:url(statics/images/Taipei0.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/Taipei3.jpg)"></div>
+			             <div class="swiper-slide" style="background-image:url(statics/images/beijing0.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/beijing1.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/beijing4.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/beijing2.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/tinglin0.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/tinglin2.jpg)"></div>
+			        </div>
+			        <!-- Add Arrows -->
+			        <div class="swiper-button-next swiper-button-white"></div>
+			        <div class="swiper-button-prev swiper-button-white"></div>
+			    </div>
+			    <div class="swiper-container gallery-thumbs">
+			        <div class="swiper-wrapper">
+			            <div class="swiper-slide" style="background-image:url(statics/images/Taipei0.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/Taipei3.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/beijing0.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/beijing1.jpg)"></div>
+			             <div class="swiper-slide" style="background-image:url(statics/images/beijing4.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/beijing2.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/tinglin0.jpg)"></div>
+			            <div class="swiper-slide" style="background-image:url(statics/images/tinglin2.jpg)"></div>
+			        </div>
+			    </div>
+		    </div>
 		</div>
 		
 		<!--contact-->
@@ -298,6 +331,8 @@
 		
 		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/rocket.js" type="text/javascript" charset="utf-8"></script>
+		<!-- Swiper JS -->
+   		<script src="swiper/js/swiper.min.js"></script>
 		<script type="text/javascript">
 			
 			$(function(){
@@ -469,6 +504,24 @@
 							$(ele).attr('class', arr[index]);
 						})
 					});
+				}
+				
+				swiper();
+				function swiper(){
+					var galleryTop = new Swiper('.gallery-top', {
+				        nextButton: '.swiper-button-next',
+				        prevButton: '.swiper-button-prev',
+				        spaceBetween: 10,
+				    });
+				    var galleryThumbs = new Swiper('.gallery-thumbs', {
+				        spaceBetween: 10,
+				        centeredSlides: true,
+				        slidesPerView: 'auto',
+				        touchRatio: 0.2,
+				        slideToClickedSlide: true
+				    });
+				    galleryTop.params.control = galleryThumbs;
+				    galleryThumbs.params.control = galleryTop;
 				}
 			})
 			

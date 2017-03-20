@@ -610,13 +610,19 @@ nav ul li.box{
 
 /* life */
 .life{
-	height: 500px;
-	background: #14a73c;
+	height: 728px;
+	background: #8AC024;
 	overflow: hidden;
 }
 
 .life:hover .introduce .about_me_title{
 	animation: 2s .2s show ease; 
+}
+
+.life_box{
+	width: 800px;
+	height: 550px;
+	margin: 0 auto;
 }
 
 /* contact */
