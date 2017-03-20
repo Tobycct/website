@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}	
+			#box{
+				width: 880px;
+				height: 220px;
+				border: 1px solid #ccc;
+				margin: 100px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			ul{
+				width: 880px;
+				height: 220px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			ul li{
+				width: 200px;
+				height: 200px;
+				padding: 10px;
+				float: left;	
+				list-style: none;
+			}
+			img{
+				width: 200px;
+				height: 200px;
+			}
+			
+			span{
+				position: absolute;
+				width: 50%;
+				height: 100%;
+				top: 0;
+			}
+			.left{
+				left: 0;
+			}
+			.right{
+				right: 0;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var oUl = document.getElementById("ul1");
+				var aLi = oUl.children;
+				var oLeft = document.getElementsByTagName('span')[0];
+				var oRight = document.getElementsByTagName('span')[1];
+				var timer = null;
+				var left = 0;
+				
+				oUl.innerHTML += oUl.innerHTML; 
+				var w = oUl.offsetWidth;
+				oUl.style.width = oUl.offsetWidth * 2 +'px';
+
+				oRight.onmouseover = toRight;
+				oLeft.onmouseover = toLeft;
+				
+				toRight();
+				
+				function toRight(){
+					clearInterval(timer);
+					
+					timer = setInterval(function(){
+						left += 5;
+						oUl.style.left = (left%w-w)%w + 'px';
+					}, 30)
+				}
+				
+				function toLeft(){
+					clearInterval(timer);
+					
+					timer = setInterval(function(){
+						left -= 5;
+						if(left<0){
+							oUl.style.left = left%w + 'px';
+						}else{
+							oUl.style.left = (left%w-w)%w + 'px';
+						}
+					}, 30)
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="ul1">
+				<li><img src="cat/1.jpg" alt=""></li>
+				<li><img src="cat/2.jpg" alt=""></li>
+				<li><img src="cat/3.jpg" alt=""></li>
+				<li><img src="cat/4.jpg" alt=""></li>
+			</ul>
+			    <span class="left"></span>
+        		<span class="right"></span>
+		</div>
+	</body>
+</html>

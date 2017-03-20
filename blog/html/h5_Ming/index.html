@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width,user-scalable=0,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			
+			html{
+				font-size: 100px;
+			}
+			
+			body{
+				/*display: flex;
+				flex-direction: column;
+				align-items: center;*/
+				font-size: 0.16rem;
+				/*overflow-x: hidden;*/
+			}
+			
+			/*header*/
+			header{
+				display: flex;
+				flex-direction: row;
+				width: 8.95rem;
+				height: 0.98rem;
+				background: #7dccf3;
+				align-items: center;  
+			}
+			
+			.logo > img{
+				height: 0.57rem;
+				padding: 0.15rem;
+			}
+			
+			.search-bar{
+				margin-right: 0.15rem;   
+				height: 0.61rem;
+				background-color: #68b1d4;
+				border-radius: 0.2rem;
+				display: flex;
+				flex: 1;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+			}
+			
+			.search-bar > input{
+				width: 60%;
+				background-color: #68b1d4;
+				border: 0;
+				outline: none;
+				color: #fff;
+			}
+
+			.search-bar > input::-webkit-input-placeholder{
+				color: #fff;
+			}
+			
+			.search-bar > img{
+				width: 0.4rem;
+				height: 0.35rem;
+				padding-right: 0.05rem;
+			}
+			
+			.slider{
+				width: 8.95rem;
+				height: 4.7rem;
+			}
+			
+			.slider > img{
+				width: 100%;
+			}
+			
+			.entrances{
+				width: 8.95rem;
+				height: 2.15rem;
+				display: flex;
+				flex-direction: row;
+				background: #e0e0e0;
+			}
+			
+			.entrance{
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin-top: 0.3rem;
+			}
+			
+			.entrance > img{
+				width: 1.02rem;
+			}
+			
+			article{
+				width: 8.95rem;
+				background-color: #f8f8f8;
+			}
+			
+			article > p{
+				padding-left: 0.2rem;
+				margin-top: 0.2rem;
+				margin-bottom: 0.05rem;
+			}
+			.commend{
+				width: 8.95rem;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			
+			.commend > img{
+				width: 98%;
+			}
+			
+			.commend-more{
+				flex: 1;
+				margin: 0.2rem;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			.commend-more > img{
+				width: 4.27rem;
+				height: 2.76rem;
+				margin: 0.05rem;
+			}
+			
+			.product-recommend{
+				width: 8.95rem;
+				display: flex;
+				flex-wrap: wrap;
+				border: 0.01rem solid #ccc;
+				box-sizing: border-box;
+			}
+			
+			.product{
+				display: flex;
+				flex-direction: column;
+				flex: 1;
+				min-width: 4.24rem;
+			}
+			
+			.product > img{
+				padding: 2%;
+				width: 96%;
+			}
+			
+			.product > span{
+				padding: 2%;
+				font-size: 0.4rem;
+				color: #888;
+			}
+			
+			.product > div{
+				display: flex;
+				justify-content: space-between;
+				padding: 2%;
+			}
+			
+			.product > div > span{
+				padding-left: 5%;
+				color: red;
+			}
+			
+			.product > div > p{
+				padding-right: 5%;
+				margin-top: -0.17rem;
+				color: red;
+				font-size: 0.56rem;
+			}
+			
+			.product > div > p > span{
+				font-size: 0.16rem;
+				color: #ccc;
+			}
+			
+			.bottom{
+				width: 8.95rem;
+				font-size: 0.3rem;
+				margin: 0.2rem 0;
+				text-align: center;
+				color: #95dcf2;
+			}
+			
+			footer{
+				border-top: 0.01rem solid #ccc;
+				width: 8.95rem;
+				display: flex;
+				background: #f0f0f0;
+			}
+			
+			footer > div{
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin-top: 0.1rem;
+				margin-bottom: 0.1rem;
+			}
+			
+			footer > div > img{
+				width: 30%;
+			}
+			
+			footer > div > span{
+				color: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<img src="img/m.jpg" alt="" />
+			</div>
+			<div class="search-bar">
+				<img src="img/search.jpg"/><span></span><input type="text" placeholder="搜索目的地、帖子、景点"/>
+			</div>
+		</header>
+		<div class="slider">
+			<img src="img/slider.jpg"/>
+		</div>
+		
+		<div class="entrances">
+			<div class="entrance">
+				<img src="img/entrance.jpg"/>
+				<span>看攻略</span>
+			</div>
+			<div class="entrance">
+				<img src="img/entrance.jpg"/>
+				<span>看攻略</span>
+			</div>
+			<div class="entrance">
+				<img src="img/entrance.jpg"/>
+				<span>看攻略</span>
+			</div>
+			<div class="entrance">
+				<img src="img/entrance.jpg"/>
+				<span>看攻略</span>
+			</div>
+		</div>
+		
+		<article>
+			<p>旅游推荐</p>	
+			<div class="commend">
+				<img src="img/commend.jpg" alt="" />
+				<div class="commend-more">
+					<img src="img/commend2.jpg" alt="" />
+					<img src="img/commend2.jpg" alt="" />
+				</div>
+			</div>
+			<p>折扣游</p>
+		</article>
+		
+		<div class="product-recommend">
+			<div class="product">
+				<img src="img/saiban.jpg" alt="" />
+				<span>塞班岛5-6天（换了自由行）</span>
+				<div>
+					<span>4.7折</span>
+					<p>5699<span>元起</span></p>
+				</div>
+			</div>
+			<div class="product">
+				<img src="img/saiban.jpg" alt="" />
+				<span>塞班岛5-6天（换了自由行）</span>
+				<div>
+					<span>4.7折</span>
+					<p>5699<span>元起</span></p>
+				</div>
+			</div>
+			<div class="product">
+				<img src="img/saiban.jpg" alt="" />
+				<span>塞班岛5-6天（换了自由行）</span>
+				<div>
+					<span>4.7折</span>
+					<p>5699<span>元起</span></p>
+				</div>
+			</div>
+			<div class="product">
+				<img src="img/saiban.jpg" alt="" />
+				<span>塞班岛5-6天（换了自由行）</span>
+				<div>
+					<span>4.7折</span>
+					<p>5699<span>元起</span></p>
+				</div>
+			</div>	
+		</div>	
+		
+		<p class="bottom">查看全部 ></p>
+		
+		<footer>
+			<div>
+				<img src="img/tuijian.jpg" alt="" />
+				<span>推荐</span>
+			</div>
+			<div>
+				<img src="img/tuijian.jpg" alt="" />
+				<span>目的地</span>
+			</div>
+			<div>
+				<img src="img/tuijian.jpg" alt="" />
+				<span>帖子</span>
+			</div>
+			<div>
+				<img src="img/tuijian.jpg" alt="" />
+				<span>我的</span>
+			</div>
+		</footer>
+
+
+		<script type="text/javascript">
+			var doc = document.documentElement;
+			doc.style.fontSize = doc.clientWidth/895 * 100 + 'px';
+		</script>
+	</body>
+</html>

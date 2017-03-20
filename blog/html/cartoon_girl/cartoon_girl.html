@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				background: black;
+			}
+			canvas{
+				background: white;
+				display: block;
+				margin: 20px auto;				
+			}
+			p{
+				color: red;
+				text-align: center;
+				font-size: 22px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>tip:键盘↑↓←→控制动画</p>
+		<canvas id="" width="800" height="560"></canvas>
+		
+		<script type="text/javascript">
+			var oC = document.querySelector("canvas");
+			var ctx = oC.getContext('2d');
+			
+			var oImage = new Image();
+			
+			oImage.src = '1.png';
+			
+			var timer = null;
+			var index = 1;
+			var direction = 0;
+			var offsetLeft = 0;
+			var offsetTop = 0;
+			
+			oImage.onload = function(){
+				
+				setInterval(function(){
+						
+					ctx.clearRect(0,0,oC.width, oC.height);
+					
+					ctx.drawImage(oImage,
+						index*96,
+						direction*96,
+						96,
+						96,
+						offsetLeft,
+						offsetTop,
+						96,
+						96
+					)
+					
+					index++;
+					if(index==4){
+						index = 1;
+					}
+				}, 60)
+			}
+			
+			document.onkeydown = function({key}){
+//				console.log(key);
+				if(timer) return;    //因为键按下去是在连续点击
+				
+				switch(key){
+					case 'ArrowUp':
+						direction = 3;
+						break;
+					case 'ArrowDown':
+						direction = 0;
+						break;
+					case 'ArrowRight':
+						direction = 2;
+						break;
+					case 'ArrowLeft':
+						direction = 1;
+						break;
+					default:
+						return;
+				}
+			
+				timer = setInterval(function(){
+					switch (direction){
+						case 0:
+							offsetTop+=2;
+							break;
+						case 1:
+							offsetLeft-=2; 
+							break;
+						case 2:
+							offsetLeft+=2;
+							break;
+						case 3:
+							offsetTop-=2;
+							break;
+					}
+				},16)
+			}
+			
+			document.onkeyup = function(){
+				clearInterval(timer);     //如果先是timer=null的话，上面的判断语句直接return了，关不掉定时器了 
+				timer = null;
+			}
+			
+		</script>
+	</body>
+</html>
