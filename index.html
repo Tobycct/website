@@ -320,7 +320,6 @@
 			<li><span>联系我</span></li>
 		</ul>
 		
-		
 		<footer>
 			<div style="display: none;" id="rocket-to-top">
 			<div style="opacity:0;display: block;" class="level-2"></div>
@@ -329,10 +328,15 @@
 	
 		
 		
-		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-1.7.2-min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/rocket.js" type="text/javascript" charset="utf-8"></script>
 		<!-- Swiper JS -->
    		<script src="swiper/js/swiper.min.js"></script>
+   		<script src="js/swiper.js" type="text/javascript" charset="utf-8"></script>
+   		
+   		<script src="js/demo.js" type="text/javascript" charset="utf-8"></script>
+   		
+   		
 		<script type="text/javascript">
 			
 			$(function(){
@@ -408,121 +412,84 @@
 					},30);
 				}	
 				
-				
-				//获取当前的index
-				function getIndex(obj){
-					var frontIndex = 0;
-					obj.each(function(index,ele){
-						if($(this).attr('tag') == 'yes') frontIndex=index;
-					})
-					return frontIndex;
-				}
-				
-				$('.sidebar li').eq(0).css('background-color', 'rgb(0, 0, 0)');			
-				$('.sidebar li').each(function(index,ele){
-					var timer2 = null;
-					var isTop = false;
+				sidebarScroll();
+				function sidebarScroll(){
+
+					//获取当前的index
+					function getIndex(obj){
+						var frontIndex = 0;
+						obj.each(function(index,ele){
+							if($(this).attr('tag') == 'yes') frontIndex=index;
+						})
+						return frontIndex;
+					}
 					
-					$(this).on('click', function(){
-						clearInterval(timer2);
+					$('.sidebar li').eq(0).css('background-color', 'rgb(0, 0, 0)');			
+					$('.sidebar li').each(function(index,ele){
+						var timer2 = null;
+						var isTop = false;
 						
-						var fIndex = getIndex($('.sidebar li'));
-						$('.sidebar li').attr('tag', 'no');
-						$(this).attr('tag', 'yes');
-						//滚动高度=中心在整个页面中的offset高度-可视区/2
-						var pos = aDiv.eq(index).offset().top + aDiv.eq(index).outerHeight()/2 - $(window).height()/2;
-						if(index == 4){
-//							最后一个div = 整个页面的高度 - 视口的高度
-							pos = $(document).height() - $(window).height();
-						}
-						var frontPos = $(document).scrollTop();
-						var dis = pos - frontPos;
-						var addcount = 0; 
-						var total = Math.floor(500/16);
-						timer2 = setInterval(function(){
-							isTop = false;
-							addcount ++;
+						$(this).on('click', function(){
+							clearInterval(timer2);
 							
-							var a = 1 - addcount/total;
-							var cur = frontPos + dis * (1 - Math.pow(a, 3));
-							$(document).scrollTop(cur);
-							
-							if(addcount == total){
-								 clearInterval(timer2);
-							}
-						}, 16)
-//						$(document.body).animate({scrollTop: dis});  //jquery要考虑正负，而原生不用
-					})
-					
-					$(window).on('scroll', function(){
-	                    if (isTop) {           
-	                        clearInterval(timer2);   //shoudo
-	                    }
-	                    isTop = true;
-	                    $('.sidebar li').each(function(index,ele){
+							var fIndex = getIndex($('.sidebar li'));
+							$('.sidebar li').attr('tag', 'no');
+							$(this).attr('tag', 'yes');
+							//滚动高度=中心在整个页面中的offset高度-可视区/2
+							var pos = aDiv.eq(index).offset().top + aDiv.eq(index).outerHeight()/2 - $(window).height()/2;
 							if(index == 4){
-//							最后一个div选项卡索引变化  = 到达该div一半的高度
-								if($(document).scrollTop() >= (aDiv.eq(index).offset().top + aDiv.eq(index).outerHeight()/2 - $(window).height())){
-									$('.sidebar li').css('background-color', '');
-									$(ele).css('background-color', 'rgb(0, 0, 0)');
-								};
+				//							最后一个div = 整个页面的高度 - 视口的高度
+								pos = $(document).height() - $(window).height();
 							}
-							else{
-								//超过每个对应div的一半
-								if($(document).scrollTop() >= (aDiv.eq(index).offset().top - $(window).height()/2)){
-									$('.sidebar li').css('background-color', '');
-									$(ele).css('background-color', 'rgb(0, 0, 0)');	
+							var frontPos = $(document).scrollTop();
+							var dis = pos - frontPos;
+							var addcount = 0; 
+							var total = Math.floor(500/16);
+							timer2 = setInterval(function(){
+								isTop = false;
+								addcount ++;
+								
+								var a = 1 - addcount/total;
+								var cur = frontPos + dis * (1 - Math.pow(a, 3));
+								$(document).scrollTop(cur);
+								
+								if(addcount == total){
+									 clearInterval(timer2);
 								}
-							}
-	                    })
+							}, 16)
+				//						$(document.body).animate({scrollTop: dis});  //jquery要考虑正负，而原生不用
+						})
+						
+						$(window).on('scroll', function(){
+				            if (isTop) {           
+				                clearInterval(timer2);   //shoudo
+				            }
+				            isTop = true;
+				            $('.sidebar li').each(function(index,ele){
+								if(index == 4){
+				//							最后一个div选项卡索引变化  = 到达该div一半的高度
+									if($(document).scrollTop() >= (aDiv.eq(index).offset().top + aDiv.eq(index).outerHeight()/2 - $(window).height())){
+										$('.sidebar li').css('background-color', '');
+										$(ele).css('background-color', 'rgb(0, 0, 0)');
+									};
+								}
+								else{
+									//超过每个对应div的一半
+									if($(document).scrollTop() >= (aDiv.eq(index).offset().top - $(window).height()/2)){
+										$('.sidebar li').css('background-color', '');
+										$(ele).css('background-color', 'rgb(0, 0, 0)');	
+									}
+								}
+				            })
+						})
 					})
-				})
+				}
 				
 				//demo
 				demo();
-				function demo(){
-					var aLi = $('#about_me_demobox > li');	
-					var oLeft = $('#about_me_demobox_left');
-					var oRight = $('#about_me_demobox_right');
-					
-					var arr=[];
-					
-					aLi.each(function(index, ele){
-						arr.push(ele.className);	
-					})
-					
-					oRight.on('click', function (){
-						arr.unshift(arr.pop());
-						aLi.each(function(index, ele){
-							$(ele).attr('class', arr[index]);
-						})
-					});
-					
-					oLeft.on('click', function (){
-						arr.push(arr.shift());
-						aLi.each(function(index, ele){
-							$(ele).attr('class', arr[index]);
-						})
-					});
-				}
 				
+				//life
 				swiper();
-				function swiper(){
-					var galleryTop = new Swiper('.gallery-top', {
-				        nextButton: '.swiper-button-next',
-				        prevButton: '.swiper-button-prev',
-				        spaceBetween: 10,
-				    });
-				    var galleryThumbs = new Swiper('.gallery-thumbs', {
-				        spaceBetween: 10,
-				        centeredSlides: true,
-				        slidesPerView: 'auto',
-				        touchRatio: 0.2,
-				        slideToClickedSlide: true
-				    });
-				    galleryTop.params.control = galleryThumbs;
-				    galleryThumbs.params.control = galleryTop;
-				}
 			})
 			
 		</script>
