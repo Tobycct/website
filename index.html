@@ -344,18 +344,24 @@
 //				$('#box_3d >div').each(function(index, ele){
 //					$(this).css('background-color', 'rgba('+rnd(0,256)+', '+rnd(0,256)+', '+ rnd(0,256) + ', ' + '0.8)');
 //				})
-
-				var oAudio = $('Audio')[0];
-				$('.music').on('click', function(){
-					if(oAudio.paused){                 
-					      oAudio.play();
+                
+                //music
+				function fnMusic(){
+					var oAudio = $('audio')[0];
+					if(oAudio.paused){
+					    oAudio.play();
 					}else{
 						oAudio.pause();
 					}
 					this.classList.toggle('musicpaused');
-				})
+				}
+
+				$('.music').on('click', fnMusic);
 				
-				if(oAudio.ended) $('.music').addClass('musicpaused');
+				$('audio').on('ended', function(){
+					$('.music').addClass('musicpaused');
+					$('.music').off('click', fnMusic);
+				})
 				
 				//随机函数
 				function rnd(n, m){
