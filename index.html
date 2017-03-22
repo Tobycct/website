@@ -22,7 +22,7 @@
 			</div>
 			
 			<div class="music">
-				<audio src="statics/music/Under the Fuji Mount.mp3" autoplay=""></audio>
+				<audio src="statics/music/Under the Fuji Mount.mp3" autoplay></audio>
 			</div>
 			
 			<div class="top clearfix">
@@ -341,12 +341,12 @@
 			
 			$(function(){
 				//立方体、音乐播放器
-				$('#box_3d >div').each(function(index, ele){
-					$(this).css('background-color', 'rgba('+rnd(0,256)+', '+rnd(0,256)+', '+ rnd(0,256) + ', ' + '0.8)');
-				})
-				
+//				$('#box_3d >div').each(function(index, ele){
+//					$(this).css('background-color', 'rgba('+rnd(0,256)+', '+rnd(0,256)+', '+ rnd(0,256) + ', ' + '0.8)');
+//				})
+
+				var oAudio = $('Audio')[0];
 				$('.music').on('click', function(){
-					var oAudio = $('Audio')[0];
 					if(oAudio.paused){                 
 					      oAudio.play();
 					}else{
@@ -354,6 +354,8 @@
 					}
 					this.classList.toggle('musicpaused');
 				})
+				
+				if(oAudio.ended) $('.music').addClass('musicpaused');
 				
 				//随机函数
 				function rnd(n, m){
