@@ -8,6 +8,16 @@ header{
 	width: 100%;
 	height: 160px;
 	background: #ebcab7;
+	position: relative;
+}
+
+.weather_box{
+	position: absolute;
+	right: 6px;
+	top: 3px;
+	font-size: 18px;
+	color: #df654e;
+	text-align: center;
 }
 
 #box_3d{

@@ -29,6 +29,12 @@
 				<p class="mainp l">陈春亭个人站</p>
 				<p class="transp l">一个走在web之路的前端工程师</p>
 			</div>
+			
+			<div class="weather_box">
+				<p class="date"></p>
+				<p class="weather"></p>
+				<p class="temp"></p>
+			</div>
 		</header>
 		
 		<nav>
@@ -361,6 +367,21 @@
 				$('audio').on('ended', function(){
 					$('.music').addClass('musicpaused');
 					$('.music').off('click', fnMusic);
+				})
+				
+				//weather
+				$.ajax({
+					type: 'get',
+					dataType: 'jsonp',
+					url: 'http://api.asilu.com/weather/',
+					data:{
+						city: '上海'
+					},
+					success:function(json){
+						$('.weather').html(json.weather[0].weather);
+						$('.date').html(json.weather[0].date);
+						$('.temp').html(json.weather[0].temp);
+					}
 				})
 				
 				//随机函数
