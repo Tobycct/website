@@ -333,198 +333,193 @@
 		</footer>
 	
 		
-		
 		<script src="js/jquery-1.7.2-min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/rocket.js" type="text/javascript" charset="utf-8"></script>
 		<!-- Swiper JS -->
    		<script src="swiper/js/swiper.min.js"></script>
    		<script src="js/swiper.js" type="text/javascript" charset="utf-8"></script>
-   		
    		<script src="js/demo.js" type="text/javascript" charset="utf-8"></script>
-   		
-   		
 		<script type="text/javascript">
 			
-//			$(function(){
-				//立方体、音乐播放器
+			//立方体、音乐播放器
 //				$('#box_3d >div').each(function(index, ele){
 //					$(this).css('background-color', 'rgba('+rnd(0,256)+', '+rnd(0,256)+', '+ rnd(0,256) + ', ' + '0.8)');
 //				})
-                
-                //music
-				function fnMusic(){
-					var oAudio = $('audio')[0];
-					if(oAudio.paused){
-					    oAudio.play();
-					}else{
-						oAudio.pause();
-					}
-					this.classList.toggle('musicpaused');
-				}
-
-				$('.music').on('click', fnMusic);
-				
-				$('audio').on('ended', function(){
+            
+            //music
+			function fnMusic(){
+				var oAudio = $('audio')[0];
+				if(oAudio.paused){
+				    $('.music').removeClass('musicpaused');
+				    oAudio.play();
+				}else{
 					$('.music').addClass('musicpaused');
-					$('.music').off('click', fnMusic);
-				})
-				
-				//weather
-				$.ajax({
-					type: 'get',
-					dataType: 'jsonp',
-					url: 'https://api.asilu.com/weather/',
-					data:{
-						city: '上海'
-					},
-					success:function(json){
-						$('.weather').html(json.weather[0].weather);
-						$('.date').html(json.weather[0].date.split(' ').reverse().join(' '));
-						
-						var oTemp = json.weather[0].temp;
-						var oLowestTemp = oTemp.split(' ~ ')[1];
-						var lowestTemp = oLowestTemp.substring(0, oLowestTemp.length-1);
-						var highestTemp = oTemp.split(' ~ ')[0];
-						$('.temp').html(lowestTemp + ' ~ ' + highestTemp + '℃');
-					}
-				})
-				
-				//随机函数
-				function rnd(n, m){
-					return Math.floor(Math.random()*(m-n)+n);
+					oAudio.pause();
 				}
-				
-				//nav 
-				var aDiv = $('body > div');
-				$('nav ul li').each(function(index,ele){
-					$(this).css({
-						'position':'absolute',
-						'top': 0,
-						'left': $(this).outerWidth()*index,
-						'z-index': 10
-					})
-					$(this).on('click', function(){
-					//滚动高度=中心在整个页面中的offset高度-可视区/2
-						var pos = aDiv.eq(index).offset().top + aDiv.eq(index).outerHeight()/2 - $(window).height()/2;
-						$(document).scrollTop(pos);
-					})
-				})
-				$('nav ul li.box').css(
-					{
-					'z-index': 1,
-					'left': 0
-					});
-				
-				var oUl=document.getElementById('list');
-				var aLi=oUl.children;
-				var oBox=aLi[aLi.length-1];
-				//加事件
-				for (var i = 0; i < aLi.length-1; i++) {
-					aLi[i].onmouseover=function(){
-						clearInterval(timer);
-						elastic(oBox,this.offsetLeft);
-					};
-					aLi[i].onmouseout=function(){
-						clearInterval(timer);
-						elastic(oBox,aLi[0].offsetLeft);
-					};
-				};
-				
-				var left=0;
-				var iSpeed=1;//定义一个速度
-				var timer=null;
-				function elastic(obj,iTarget){
-					timer=setInterval(function(){
-						iSpeed+=(iTarget-left)/20;
-						iSpeed*=0.9;
-						
-						left+=iSpeed;
-						obj.style.left=left+'px';
-						if(Math.round(iSpeed)==0 && Math.round(left)==iTarget){
-							clearInterval(timer);
-						}
-					},30);
-				}	
-				
-				sidebarScroll();
-				function sidebarScroll(){
+			}
 
-					//获取当前的index
-					function getIndex(obj){
-						var frontIndex = 0;
-						obj.each(function(index,ele){
-							if($(this).attr('tag') == 'yes') frontIndex=index;
-						})
-						return frontIndex;
-					}
+			$('.music').on('click', fnMusic);
+			
+			$('audio').on('ended', function(){
+				$('.music').addClass('musicpaused');
+				$('.music').off('click', fnMusic);
+			})
+			
+			//weather
+			$.ajax({
+				type: 'get',
+				dataType: 'jsonp',
+				url: 'https://api.asilu.com/weather/',
+				data:{
+					city: '上海'
+				},
+				success:function(json){
+					$('.weather').html(json.weather[0].weather);
+					$('.date').html(json.weather[0].date.split(' ').reverse().join(' '));
 					
-					$('.sidebar li').eq(0).css('background-color', 'rgb(0, 0, 0)');			
-					$('.sidebar li').each(function(index,ele){
-						var timer2 = null;
-						var isTop = false;
-						
-						$(this).on('click', function(){
-							clearInterval(timer2);
-							
-							var fIndex = getIndex($('.sidebar li'));
-							$('.sidebar li').attr('tag', 'no');
-							$(this).attr('tag', 'yes');
-							//滚动高度=中心在整个页面中的offset高度-可视区/2
-							var pos = aDiv.eq(index).offset().top + aDiv.eq(index).outerHeight()/2 - $(window).height()/2;
-							if(index == 4){
-				//							最后一个div = 整个页面的高度 - 视口的高度
-								pos = $(document).height() - $(window).height();
-							}
-							var frontPos = $(document).scrollTop();
-							var dis = pos - frontPos;
-							var addcount = 0; 
-							var total = Math.floor(500/16);
-							timer2 = setInterval(function(){
-								isTop = false;
-								addcount ++;
-								
-								var a = 1 - addcount/total;
-								var cur = frontPos + dis * (1 - Math.pow(a, 3));
-								$(document).scrollTop(cur);
-								
-								if(addcount == total){
-									 clearInterval(timer2);
-								}
-							}, 16)
-				//						$(document.body).animate({scrollTop: dis});  //jquery要考虑正负，而原生不用
-						})
-						
-						$(window).on('scroll', function(){
-				            if (isTop) {           
-				                clearInterval(timer2);   //shoudo
-				            }
-				            isTop = true;
-				            $('.sidebar li').each(function(index,ele){
-								if(index == 4){
-				//							最后一个div选项卡索引变化  = 到达该div一半的高度
-									if($(document).scrollTop() >= (aDiv.eq(index).offset().top + aDiv.eq(index).outerHeight()/2 - $(window).height())){
-										$('.sidebar li').css('background-color', '');
-										$(ele).css('background-color', 'rgb(0, 0, 0)');
-									};
-								}
-								else{
-									//超过每个对应div的一半
-									if($(document).scrollTop() >= (aDiv.eq(index).offset().top - $(window).height()/2)){
-										$('.sidebar li').css('background-color', '');
-										$(ele).css('background-color', 'rgb(0, 0, 0)');	
-									}
-								}
-				            })
-						})
+					var oTemp = json.weather[0].temp;
+					var oLowestTemp = oTemp.split(' ~ ')[1];
+					var lowestTemp = oLowestTemp.substring(0, oLowestTemp.length-1);
+					var highestTemp = oTemp.split(' ~ ')[0];
+					$('.temp').html(lowestTemp + ' ~ ' + highestTemp + '℃');
+				}
+			})
+			
+			//随机函数
+			function rnd(n, m){
+				return Math.floor(Math.random()*(m-n)+n);
+			}
+			
+			//nav 
+			var aDiv = $('body > div');
+			$('nav ul li').each(function(index,ele){
+				$(this).css({
+					'position':'absolute',
+					'top': 0,
+					'left': $(this).outerWidth()*index,
+					'z-index': 10
+				})
+				$(this).on('click', function(){
+				//滚动高度=中心在整个页面中的offset高度-可视区/2
+					var pos = aDiv.eq(index).offset().top + aDiv.eq(index).outerHeight()/2 - $(window).height()/2;
+					$(document).scrollTop(pos);
+				})
+			})
+			$('nav ul li.box').css(
+				{
+				'z-index': 1,
+				'left': 0
+				});
+			
+			var oUl=document.getElementById('list');
+			var aLi=oUl.children;
+			var oBox=aLi[aLi.length-1];
+			//加事件
+			for (var i = 0; i < aLi.length-1; i++) {
+				aLi[i].onmouseover=function(){
+					clearInterval(timer);
+					elastic(oBox,this.offsetLeft);
+				};
+				aLi[i].onmouseout=function(){
+					clearInterval(timer);
+					elastic(oBox,aLi[0].offsetLeft);
+				};
+			};
+			
+			var left=0;
+			var iSpeed=1;//定义一个速度
+			var timer=null;
+			function elastic(obj,iTarget){
+				timer=setInterval(function(){
+					iSpeed+=(iTarget-left)/20;
+					iSpeed*=0.9;
+					
+					left+=iSpeed;
+					obj.style.left=left+'px';
+					if(Math.round(iSpeed)==0 && Math.round(left)==iTarget){
+						clearInterval(timer);
+					}
+				},30);
+			}	
+			
+			sidebarScroll();
+			function sidebarScroll(){
+
+				//获取当前的index
+				function getIndex(obj){
+					var frontIndex = 0;
+					obj.each(function(index,ele){
+						if($(this).attr('tag') == 'yes') frontIndex=index;
 					})
+					return frontIndex;
 				}
 				
-				//demo
-				demo();
-				
-				//life
-				swiper();
-//			})
+				$('.sidebar li').eq(0).css('background-color', 'rgb(0, 0, 0)');			
+				$('.sidebar li').each(function(index,ele){
+					var timer2 = null;
+					var isTop = false;
+					
+					$(this).on('click', function(){
+						clearInterval(timer2);
+						
+						var fIndex = getIndex($('.sidebar li'));
+						$('.sidebar li').attr('tag', 'no');
+						$(this).attr('tag', 'yes');
+						//滚动高度=中心在整个页面中的offset高度-可视区/2
+						var pos = aDiv.eq(index).offset().top + aDiv.eq(index).outerHeight()/2 - $(window).height()/2;
+						if(index == 4){
+			//							最后一个div = 整个页面的高度 - 视口的高度
+							pos = $(document).height() - $(window).height();
+						}
+						var frontPos = $(document).scrollTop();
+						var dis = pos - frontPos;
+						var addcount = 0; 
+						var total = Math.floor(500/16);
+						timer2 = setInterval(function(){
+							isTop = false;
+							addcount ++;
+							
+							var a = 1 - addcount/total;
+							var cur = frontPos + dis * (1 - Math.pow(a, 3));
+							$(document).scrollTop(cur);
+							
+							if(addcount == total){
+								 clearInterval(timer2);
+							}
+						}, 16)
+			//						$(document.body).animate({scrollTop: dis});  //jquery要考虑正负，而原生不用
+					})
+					
+					$(window).on('scroll', function(){
+			            if (isTop) {           
+			                clearInterval(timer2);   //shoudo
+			            }
+			            isTop = true;
+			            $('.sidebar li').each(function(index,ele){
+							if(index == 4){
+			//							最后一个div选项卡索引变化  = 到达该div一半的高度
+								if($(document).scrollTop() >= (aDiv.eq(index).offset().top + aDiv.eq(index).outerHeight()/2 - $(window).height())){
+									$('.sidebar li').css('background-color', '');
+									$(ele).css('background-color', 'rgb(0, 0, 0)');
+								};
+							}
+							else{
+								//超过每个对应div的一半
+								if($(document).scrollTop() >= (aDiv.eq(index).offset().top - $(window).height()/2)){
+									$('.sidebar li').css('background-color', '');
+									$(ele).css('background-color', 'rgb(0, 0, 0)');	
+								}
+							}
+			            })
+					})
+				})
+			}
+			
+			//demo
+			demo();
+			
+			//life
+			swiper();
 			
 		</script>
 	</body>
