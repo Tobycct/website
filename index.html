@@ -347,8 +347,8 @@
 //				})
             
             //music
+            var oAudio = $('audio')[0];
 			function fnMusic(){
-				var oAudio = $('audio')[0];
 				if(oAudio.paused){
 				    $('.music').removeClass('musicpaused');
 				    oAudio.play();
@@ -357,7 +357,7 @@
 					oAudio.pause();
 				}
 			}
-
+			if(!$('.music').hasClass('musicpaused'))  oAudio.play();
 			$('.music').on('click', fnMusic);
 			
 			$('audio').on('ended', function(){
