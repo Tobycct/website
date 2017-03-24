@@ -22,7 +22,7 @@
 			</div>
 			
 			<div class="music">
-				<audio src="statics/music/Under the Fuji Mount.mp3" autoplay="autoplay"></audio>
+				<audio src="statics/music/Under the Fuji Mount.mp3"></audio>
 			</div>
 			
 			<div class="top clearfix">
@@ -332,6 +332,7 @@
 			<div class="level-3"></div>
 		</footer>
 	
+	
 		
 		<script src="js/jquery-1.7.2-min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/rocket.js" type="text/javascript" charset="utf-8"></script>
@@ -347,9 +348,9 @@
 //				})
             
             //music
+			var oAudio = $('audio')[0];
 
 			function fnMusic(){
-           		var oAudio = $('audio')[0];
 				if(oAudio.paused){
 				    $('.music').addClass('music_run');
 				    oAudio.play();
@@ -358,6 +359,7 @@
 					oAudio.pause();
 				}
 			}
+			oAudio.play();
 			fnMusic();
 			$('.music').on('click', fnMusic);
 			
