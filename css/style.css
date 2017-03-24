@@ -15,9 +15,11 @@ header{
 	position: absolute;
 	right: 6px;
 	top: 3px;
-	font-size: 18px;
+	font-size: 16px;
 	color: #df654e;
 	text-align: center;
+	font-family: arial;
+	opacity: 0.5;
 }
 
 #box_3d{
