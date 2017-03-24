@@ -347,21 +347,22 @@
 //				})
             
             //music
-            var oAudio = $('audio')[0];
+
 			function fnMusic(){
+           		var oAudio = $('audio')[0];
 				if(oAudio.paused){
-				    $('.music').removeClass('musicpaused');
+				    $('.music').addClass('music_run');
 				    oAudio.play();
 				}else{
-					$('.music').addClass('musicpaused');
+					$('.music').removeClass('music_run');
 					oAudio.pause();
 				}
 			}
-			if(!$('.music').hasClass('musicpaused'))  oAudio.play();
+			fnMusic();
 			$('.music').on('click', fnMusic);
 			
 			$('audio').on('ended', function(){
-				$('.music').addClass('musicpaused');
+				$('.music').removeClass('music_run');
 				$('.music').off('click', fnMusic);
 			})
 			

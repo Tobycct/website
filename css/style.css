@@ -89,12 +89,12 @@ header{
 	position: fixed;
 	left: 10px;
 	top: 10px;
-	animation: 2s circle linear infinite;
+	animation: 2s circle paused linear infinite;
 	cursor: pointer;
 	z-index: 1000;
 }
-.musicpaused{
-	animation-play-state: paused;
+.music_run{
+	animation-play-state: running;
 }
 
 @keyframes circle{
