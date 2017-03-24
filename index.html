@@ -379,7 +379,7 @@
 					},
 					success:function(json){
 						$('.weather').html(json.weather[0].weather);
-						$('.date').html(json.weather[0].date);
+						$('.date').html(json.weather[0].date.split(' ').reverse().join(' '));
 						
 						var oTemp = json.weather[0].temp;
 						var oLowestTemp = oTemp.split(' ~ ')[1];
