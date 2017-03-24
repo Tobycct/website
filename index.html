@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -380,7 +380,12 @@
 					success:function(json){
 						$('.weather').html(json.weather[0].weather);
 						$('.date').html(json.weather[0].date);
-						$('.temp').html(json.weather[0].temp);
+						
+						var oTemp = json.weather[0].temp;
+						var oLowestTemp = oTemp.split(' ~ ')[1];
+						var lowestTemp = oLowestTemp.substring(0, oLowestTemp.length-1);
+						var highestTemp = oTemp.split(' ~ ')[0];
+						$('.temp').html(lowestTemp + ' ~ ' + highestTemp + '℃');
 					}
 				})
 				
