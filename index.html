@@ -377,7 +377,16 @@
 					city: '上海'
 				},
 				success:function(json){
-					$('.weather').html(json.weather[0].weather);
+					var detail = json.weather[0].weather;
+					$('.weather').html(detail);
+					if(detail.indexOf('雨') != -1){
+						$('.weather').css('background', 'url(statics/images/rainy.png) no-repeat left')
+					}else if(detail.indexOf('晴') != -1){
+						$('.weather').css('background', 'url(statics/images/sunny.png) no-repeat left');
+					}else{
+						$('.weather').css('background', 'url(statics/images/cloudy.png) no-repeat left');
+					}
+					
 					$('.date').html(json.weather[0].date.split(' ').reverse().join(' '));
 					
 					var oTemp = json.weather[0].temp;
@@ -385,6 +394,7 @@
 					var lowestTemp = oLowestTemp.substring(0, oLowestTemp.length-1);
 					var highestTemp = oTemp.split(' ~ ')[0];
 					$('.temp').html(lowestTemp + ' ~ ' + highestTemp + '℃');
+					
 				}
 			})
 			
