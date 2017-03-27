@@ -1,4 +1,4 @@
-body{
+﻿body{
 	color: #fbffff;
 	font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
@@ -13,8 +13,8 @@ header{
 
 .weather_box{
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: 13px;
+	top: 13px;
 	font-size: 16px;
 	color: #df654e;
 	text-align: center;
