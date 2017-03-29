@@ -1,4 +1,4 @@
-﻿body{
+body{
 	color: #fbffff;
 	font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
@@ -33,15 +33,15 @@ header{
 	padding-top: 8px;
 }
 
-/*#box_3d{
+#box_3d{
 	width: 200px;
     height: 200px;
     position: fixed;
     bottom: 20%;
     left: 5%;
    	transform-style: preserve-3d;
-   	/*transition: 3s;*/
-   	/*animation: 5s box linear infinite;
+   	transition: 3s;
+   	animation: 5s box linear infinite;
 }
 
 @keyframes box{
@@ -51,9 +51,9 @@ header{
 	to{
 		 transform: perspective(800px) rotateY(300deg) rotateX(390deg);	
 	}
-}*/
+}
 
-/*#box_3d > div{
+#box_3d > div{
 	width: 200px;
 	height: 200px;
 	position: absolute;
@@ -90,7 +90,7 @@ header{
 #box_3d > div:nth-child(6){
 	transform: rotateX(-90deg) translateZ(100px);
 	background-color: #339; 
-}*/
+}
 
 /*music*/
 .music{

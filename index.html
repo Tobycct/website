@@ -11,14 +11,14 @@
 	</head>
 	<body>	
 		<header>
-			<div id="box_3d" style="display: none;">
+			<div id="box_3d">
 				<div></div>
 				<div></div>
 				<div></div>
 				<div></div>
 				<div></div>
 				<div></div>
-				<div class="box_3d_audiolist" id="box_3d_audiolist"></div>
+				<!--<div class="box_3d_audiolist" id="box_3d_audiolist"></div>-->
 			</div>
 			
 			<div class="music">
@@ -240,7 +240,7 @@
 				<div class="clearfix">
 					<img src="statics/images/qianlve.jpg" class="l"/>
 					<div class="l experiences_box_right">
-						<p>2016.1——2016.10</p>
+						<p>2016.1——至今</p>
 						<p>软件工作经历</p>
 						<p>在自己的家乡从事软件开发的工作-delphi开发，从中接触了web前端开发，并产生了浓厚的兴趣。</p>
 					</div>
@@ -248,9 +248,9 @@
 				<div class="clearfix">
 					<img src="statics/images/college.jpg" class="l"/>
 					<div class="l experiences_box_right">
-						<p>2016.10——2017.3</p>
+						<p>工作中&&空暇时间</p>
 						<p>web前端学习</p>
-						<p>既然选择了前端，而前端不仅仅是html、css、数据交互，故自学起js、html5、css3、jquery等前端技术。</p>
+						<p>既然选择了前端，而前端不仅仅是html、css、数据交互，故一直学习js、html5、css3、jquery、es6等前端最新技术。</p>
 					</div>
 				</div>
 			</div>
@@ -343,9 +343,9 @@
 		<script type="text/javascript">
 			
 			//立方体、音乐播放器
-//				$('#box_3d >div').each(function(index, ele){
-//					$(this).css('background-color', 'rgba('+rnd(0,256)+', '+rnd(0,256)+', '+ rnd(0,256) + ', ' + '0.8)');
-//				})
+				$('#box_3d >div').each(function(index, ele){
+					$(this).css('background-color', 'rgba('+rnd(0,256)+', '+rnd(0,256)+', '+ rnd(0,256) + ', ' + '0.8)');
+				})
             
             //music
 			var oAudio = $('audio')[0];
